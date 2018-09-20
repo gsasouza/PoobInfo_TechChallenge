@@ -642,7 +642,13 @@
     "@types/keygrip" "*"
     "@types/node" "*"
 
-"@types/dotenv@^4.0.3":
+"@types/dotenv-safe@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@types/dotenv-safe/-/dotenv-safe-5.0.0.tgz#a122a0a9e9f4608674ac315dbc4b22a7845d2c3d"
+  dependencies:
+    "@types/dotenv" "*"
+
+"@types/dotenv@*", "@types/dotenv@^4.0.3":
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@types/dotenv/-/dotenv-4.0.3.tgz#ebcfc40da7bc0728b705945b7db48485ec5b4b67"
   dependencies:
@@ -1196,6 +1202,12 @@ dot-prop@^4.1.0:
   resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-4.2.0.tgz#1f19e0c2e1aa0e32797c49799f2837ac6af69c57"
   dependencies:
     is-obj "^1.0.0"
+
+dotenv-safe@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv-safe/-/dotenv-safe-6.0.0.tgz#8e5e5a8a7b0f588d22a8d7e8000d21a8ec42194f"
+  dependencies:
+    dotenv "^6.0.0"
 
 dotenv@^6.0.0:
   version "6.0.0"
