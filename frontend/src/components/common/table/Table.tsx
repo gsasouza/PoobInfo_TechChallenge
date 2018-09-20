@@ -17,6 +17,7 @@ const StyledTable = styled(TableMUI)`
 
 const EmptyMessage = styled.div`
   display: flex;
+  width: 100%;
   justify-content: center;
   font-size: 26px;
   margin: 20px;
@@ -54,6 +55,7 @@ export default class Table extends React.Component <Props>{
         <EmptyMessage>
           {emptyMessage}
         </EmptyMessage>
+
       )
     }
 

@@ -6,12 +6,13 @@ import styled from 'styled-components';
 import SidebarItem from './SidebarItem';
 
 const Drawer = styled(DrawerMUI)`
-  transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
   > div {
+    position: unset !important;
     z-index: -1;
     margin-top: 64px;
     width: ${props => props.open ? 250 : 0 }px;
   }
+  height: calc(100vh - 64px);
   position: relative;
   white-space: nowrap;
 `;

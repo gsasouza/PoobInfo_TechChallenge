@@ -33,9 +33,9 @@ type Props = {
 
 class SidebarItem extends React.Component<Props> {
   render() {
-    const { children, label, path, location } = this.props;
+    const { children, label, path, location, history } = this.props;
     return (
-      <MenuItem button selected={hasMatched(location, path)}>
+      <MenuItem onClick={() => history.push(path)} button selected={hasMatched(location, path)}>
         <MenuItemIcon selected={hasMatched(location, path)}>
           <Icon>
             {children}

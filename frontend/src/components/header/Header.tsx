@@ -22,7 +22,7 @@ class Header extends React.Component<Props> {
     const { toggleSidebar } = this.props;
 
     return (
-      <AppBar position="static">
+      <AppBar position="absolute">
         <Toolbar>
           <IconButton color={'inherit'} onClick={toggleSidebar}>
             {'menu'}
