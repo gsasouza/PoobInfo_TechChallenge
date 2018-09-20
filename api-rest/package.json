@@ -1,0 +1,41 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --extensions “.es6,.js,.es,.jsx,.mjs,.ts",
+    "build": "babel ./src --out-dir lib --extensions \".js,.ts\""
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "dotenv": "^6.0.0",
+    "kcors": "^2.2.2",
+    "koa": "^2.5.3",
+    "koa-body": "^4.0.4",
+    "koa-router": "^7.4.0",
+    "mongoose": "^5.2.15",
+    "mongoose-auto-increment": "^5.0.1",
+    "shortid": "^2.2.13",
+    "yup": "^0.26.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "@types/dotenv": "^4.0.3",
+    "@types/koa": "^2.0.46",
+    "@types/koa-router": "^7.0.31",
+    "@types/mongoose": "^5.2.15",
+    "@types/mongoose-auto-increment": "^5.0.30",
+    "@types/shortid": "^0.0.29",
+    "@types/yup": "^0.24.9",
+    "babel-plugin-add-module-exports": "^1.0.0",
+    "nodemon": "^1.18.4",
+    "typescript": "^3.0.3"
+  }
+}
