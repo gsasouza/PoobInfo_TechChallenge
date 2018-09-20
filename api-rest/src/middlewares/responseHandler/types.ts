@@ -1,0 +1,7 @@
+export default {
+  LOADED: 'LOADED',
+  CREATED: 'CREATE',
+  DELETED: 'DELETED',
+  UPDATED: 'UPDATED',
+  NOT_FOUND: 'NOT_FOUND',
+}

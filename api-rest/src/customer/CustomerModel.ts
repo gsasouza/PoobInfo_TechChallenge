@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment';
 import * as yup from 'yup';
+import { MONGO_URI } from '../common/config';
+
+const connection = mongoose.createConnection(MONGO_URI, { useNewUrlParser: true });
+autoIncrement.initialize(connection);
 
 export interface ICustomer {
   name: string;

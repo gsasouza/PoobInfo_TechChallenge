@@ -8,8 +8,8 @@ const router = new Router({ prefix: 'company'});
 
 router.get('/', async (ctx: Context, next: Function) => {
   const companies = await Company.getAll(ctx.request.query);
-  ctx.state.respose = {
-    type: RESPONSE_TYPES.LOADED,
+  ctx.state.response = {
+    type: `${RESPONSE_TYPES.LOADED}:COMPANY`,
     payload: companies,
   };
   await next();
@@ -17,8 +17,8 @@ router.get('/', async (ctx: Context, next: Function) => {
 
 router.post('/', async (ctx: Context, next: Function) => {
   const company = await Company.create(ctx.request.body);
-  ctx.body = {
-    type: RESPONSE_TYPES.CREATED,
+  ctx.state.response = {
+    type: `${RESPONSE_TYPES.CREATED}:COMPANY`,
     payload: company
   };
   await next();
@@ -26,8 +26,8 @@ router.post('/', async (ctx: Context, next: Function) => {
 
 router.get('/:id', async (ctx: Context, next: Function) => {
   const company = await Company.getOne(ctx.params.id);
-  ctx.body = {
-    type: RESPONSE_TYPES.LOADED,
+  ctx.state.response = {
+    type: `${RESPONSE_TYPES.LOADED}:COMPANY`,
     payload: company
   };
   await next();
@@ -35,8 +35,8 @@ router.get('/:id', async (ctx: Context, next: Function) => {
 
 router.put('/:id', async (ctx: Context, next: Function) => {
   const company = await Company.update(ctx.params.id, ctx.request.body);
-  ctx.body = {
-    type: RESPONSE_TYPES.UPDATED,
+  ctx.state.response = {
+    type: `${RESPONSE_TYPES.UPDATED}:COMPANY`,
     payload: company
   };
   await next();
@@ -44,8 +44,8 @@ router.put('/:id', async (ctx: Context, next: Function) => {
 
 router.delete('/:id', async (ctx: Context, next: Function) => {
   const company = await Company.remove(ctx.params.id);
-  ctx.body = {
-    type: RESPONSE_TYPES.DELETED,
+  ctx.state.response = {
+    type: `${RESPONSE_TYPES.DELETED}:COMPANY`,
     payload: company
   };
   await next();
