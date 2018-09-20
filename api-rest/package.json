@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
+    "@types/kcors": "^2.2.3",
     "dotenv-safe": "^6.0.0",
     "kcors": "^2.2.2",
     "koa": "^2.5.3",
