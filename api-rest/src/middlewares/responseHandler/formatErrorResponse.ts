@@ -2,8 +2,8 @@ import RESPONSE_TYPES from './types';
 import { Context } from 'koa';
 
 export default (ctx: Context, error: Error) => {
-  const { type = '' } = ctx.state.response ? ctx.state.response : {};
-  const [ result = '', resource = '' ] = (type || '').split(':');
+  const { message = '' } = error;
+  const [ result = '', resource = '' ] = message.split(':');
   switch (result) {
     case (RESPONSE_TYPES.NOT_FOUND): {
       ctx.status = 404;

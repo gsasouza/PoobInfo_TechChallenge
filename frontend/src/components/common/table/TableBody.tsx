@@ -15,7 +15,7 @@ const Row = styled(TableRow)`
 type Props = {
   columns: Array<Column>,
   data: Array<Item>,
-  onRowClick: (item: Item) => void,
+  onRowClick?: (item: Item) => void,
 }
 
 export default class Body extends React.Component<Props> {
@@ -56,7 +56,7 @@ export default class Body extends React.Component<Props> {
                   }
                   const value = this.getValue(column.property.split('.'), item, column.type);
                   return (
-                    <TableCell component="th" onClick={() => onRowClick(item)} scope="row" key={`${item.id}:${value}:${index}`}>
+                    <TableCell component="th" onClick={() => onRowClick ? onRowClick(item): {}} scope="row" key={`${item.id}:${value}:${index}`}>
                       {value}
                     </TableCell>
                   )

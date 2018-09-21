@@ -7,8 +7,9 @@ import Sidebar from '../components/sidebar/Sidebar';
 import { Column } from '../components/common';
 
 import CompanyList from './company/CompanyList';
-import CompanyAdd from './company/CompanyAdd';
 import CompanyForm from './company/CompanyForm';
+import CustomerList from './customer/CustomerList';
+import CustomerForm from './customer/CustomerForm';
 
 type Props = {}
 
@@ -65,6 +66,21 @@ class Dashboard extends React.Component<Props, State> {
               path={'/companies/edit/:_id'}
               exact={true}
               render={(props) => <CompanyForm isEditing {...props} /> }
+            />
+            <Route
+              path={'/customers'}
+              exact={true}
+              render={(props) => <CustomerList {...props} /> }
+            />
+            <Route
+              path={'/customers/add'}
+              exact={true}
+              render={(props) => <CustomerForm {...props} /> }
+            />
+            <Route
+              path={'/customers/edit/:_id'}
+              exact={true}
+              render={(props) => <CustomerForm isEditing {...props} /> }
             />
           </Switch>
         </Content>

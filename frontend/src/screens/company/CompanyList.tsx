@@ -77,14 +77,20 @@ class CompanyList extends React.Component<Props, State> {
     {
       property: 'companyId',
       header: {
-        label: 'CompanyId'
+        label: 'Company Id'
+      }
+    },
+    {
+      property: 'customerId',
+      header: {
+        label: 'Customer Id'
       }
     },
     {
       type: 'date',
       property: 'createDate',
       header: {
-        label: 'CreateDate'
+        label: 'Create  Date'
       }
     },
     {

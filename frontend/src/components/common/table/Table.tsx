@@ -38,8 +38,8 @@ export type Item = {
 
 type Props = {
   columns: Array<Column>,
-  handleChangePage: (forward: true) => void,
-  onRowClick: (item: Item) => void,
+  handleChangePage?: (forward: true) => void,
+  onRowClick?: (item: Item) => void,
   data: Array<Item>,
   emptyMessage?: string,
 }

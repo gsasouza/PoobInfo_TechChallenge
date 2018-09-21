@@ -4,10 +4,12 @@ import RESPONSE_TYPES from './types';
 
 export default (ctx: Context) => {
 
+  console.log(ctx.state)
+
   if (!ctx.state && !ctx.state.response) {
-    ctx.status = 500;
-    ctx.body = {
-      message: 'Unexpected Error',
+    ctx.status = 404;
+    return ctx.body = {
+      message: 'Route not found',
     }
   }
 

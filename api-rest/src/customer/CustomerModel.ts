@@ -41,6 +41,10 @@ const Schema = new mongoose.Schema(
       type: String,
       required: true
     },
+    companyId: {
+      type: String,
+      required: true
+    },
     email: {
       type: String,
       required: true
