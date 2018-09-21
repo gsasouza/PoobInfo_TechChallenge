@@ -9,24 +9,24 @@ type Props = {}
 
 type State = {
   message: string,
-  duration: number,
+  duration?: number,
   onClick?: (() => void) | null,
 }
 
 class Snackbar extends React.Component<Props, State> {
-  
+
   state = {
     message: '',
     duration: 4000,
     onClick: null,
   };
-  
+
   handleSnackbarConfirm = () => {
     this.setState({
       message: '',
     });
   };
-  
+
   handleSnackbar = ({
     message,
     duration = 4000,
@@ -38,11 +38,11 @@ class Snackbar extends React.Component<Props, State> {
       onClick,
     });
   };
-  
+
   render() {
-    
+
     const { duration, message, onClick } = this.state;
-    
+
     return (
       <React.Fragment>
         <SnackbarContext.Provider
@@ -61,11 +61,12 @@ class Snackbar extends React.Component<Props, State> {
             message={<span>{ message }</span>}
             action={[
               <IconButton
+                key={'button'}
                 color="inherit"
                 onClick={onClick || this.handleSnackbarConfirm}
               >
                 close
-              </IconButton>,
+              </IconButton>
             ]}
           />
           {this.props.children}

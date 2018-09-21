@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 
@@ -12,9 +13,10 @@ const ButtonWrapper = styled.div`
   width: 100%;
 `;
 
-type Props ={}
+type Props = {} & RouteComponentProps<{}>;
 
 type Company = {
+  _id: string,
   name: string,
   companyId: string,
   createDate: string,
@@ -37,6 +39,8 @@ export default class CompanyList extends React.Component<Props, State> {
   };
 
   handleDelete = (item: Company) => { console.log(item) };
+
+  handleEdit = async (item: Company) => this.props.history.push(`/companies/edit/${item._id}`);
 
   handlePageChange = (forward: true) => { };
 
@@ -63,6 +67,7 @@ export default class CompanyList extends React.Component<Props, State> {
       }
     },
     {
+      type: 'date',
       property: 'createDate',
       header: {
         label: 'CreateDate'
@@ -75,17 +80,27 @@ export default class CompanyList extends React.Component<Props, State> {
       onClick: this.handleDelete,
       header: {
         label: 'Remove'
+      },
+    },
+    {
+      property: 'edit',
+      type: 'icon',
+      icon: 'edit',
+      onClick: this.handleEdit,
+      header: {
+        label: 'Editar'
       }
     }
   ];
 
   render() {
     const { data, isLoading } = this.state;
+    const { history } = this.props;
 
     return (
       <React.Fragment>
         <ButtonWrapper>
-          <Button variant={'contained'} color={'primary'}>
+          <Button variant={'contained'} onClick={() => history.push('/companies/add')} color={'primary'}>
             Add Company
           </Button>
         </ButtonWrapper>
@@ -95,7 +110,7 @@ export default class CompanyList extends React.Component<Props, State> {
           onRowClick={this.handleDetail}
           data={data}
           handleLoading={this.handleLoading}
-          isLoading={this.isLoading}
+          isLoading={isLoading}
         />
       </React.Fragment>
 

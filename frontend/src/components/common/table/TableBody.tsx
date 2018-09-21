@@ -3,6 +3,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import IconButton from '@material-ui/core/IconButton';
+import Icon from '@material-ui/core/Icon';
 import styled from 'styled-components';
 
 import { Item, Column } from './Table';
@@ -18,13 +19,19 @@ type Props = {
 }
 
 export default class Body extends React.Component<Props> {
-  getValue = (keys: Array<string>, item: string | Item): string | Item => {
+
+  formatDate = (value: Date) => `${value.getDate()}/${value.getMonth()}/${value.getFullYear()}`;
+
+  getValue = (keys: Array<string>, item: string | Item, type?: string): string | Item => {
     if(!item) return '---';
     const [firstKey, ...rest] = keys;
-    if (![...rest].length) return firstKey;
     // @ts-ignore
     const value = item[firstKey];
-    return this.getValue([...rest], value);
+    if (![...rest].length) {
+      if (type === 'date') return this.formatDate(new Date(value));
+      return value;
+    }
+    return this.getValue([...rest], value, type);
   };
 
   render() {
@@ -40,12 +47,14 @@ export default class Body extends React.Component<Props> {
                     return (
                       <TableCell component="th" scope="row" key={`${item.id}:${index}`}>
                         <IconButton onClick={() => column.onClick!(item)}>
-                          {column.icon}
+                          <Icon>
+                            {column.icon}
+                          </Icon>
                         </IconButton>
                       </TableCell>
                     )
                   }
-                  const value = this.getValue(column.property.split('.'), item);
+                  const value = this.getValue(column.property.split('.'), item, column.type);
                   return (
                     <TableCell component="th" onClick={() => onRowClick(item)} scope="row" key={`${item.id}:${value}:${index}`}>
                       {value}

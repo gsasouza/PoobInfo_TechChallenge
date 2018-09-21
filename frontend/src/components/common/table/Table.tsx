@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 
-
 const Wrapper = styled(Paper)`
   width: 100%;
 `;
@@ -34,7 +33,7 @@ export type Column = {
 }
 
 export type Item = {
-  [key: string]: Item | string | number,
+  [key: string]: Item | string | number | null,
 }
 
 type Props = {

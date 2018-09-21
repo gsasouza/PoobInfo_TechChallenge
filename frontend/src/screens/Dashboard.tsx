@@ -8,6 +8,8 @@ import { Column } from '../components/common';
 
 import CompanyList from './company/CompanyList';
 
+import CompanyAdd from './company/CompanyAdd';
+
 type Props = {}
 
 type State = {
@@ -19,7 +21,6 @@ const Content = styled.div`
   width: 100%;
   margin-top: 70px;
 `;
-
 
 class Dashboard extends React.Component<Props, State> {
 
@@ -54,6 +55,11 @@ class Dashboard extends React.Component<Props, State> {
               path={'/companies'}
               exact={true}
               render={(props) => <CompanyList {...props} /> }
+            />
+            <Route
+              path={'/companies/add'}
+              exact={true}
+              render={(props) => <CompanyAdd {...props} /> }
             />
           </Switch>
         </Content>

@@ -3,7 +3,7 @@ import * as React from 'react';
 export type ShowSnackbarArgs = {
   onClick?: (() => void) | null,
   message: string,
-  duration: number,
+  duration?: number,
 };
 
 export type SnackbarContextProps = {
