@@ -7,8 +7,8 @@ import Sidebar from '../components/sidebar/Sidebar';
 import { Column } from '../components/common';
 
 import CompanyList from './company/CompanyList';
-
 import CompanyAdd from './company/CompanyAdd';
+import CompanyForm from './company/CompanyForm';
 
 type Props = {}
 
@@ -59,7 +59,12 @@ class Dashboard extends React.Component<Props, State> {
             <Route
               path={'/companies/add'}
               exact={true}
-              render={(props) => <CompanyAdd {...props} /> }
+              render={(props) => <CompanyForm{...props} /> }
+            />
+            <Route
+              path={'/companies/edit/:_id'}
+              exact={true}
+              render={(props) => <CompanyForm isEditing {...props} /> }
             />
           </Switch>
         </Content>

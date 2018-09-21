@@ -9,14 +9,21 @@ export const create = async (company: ICompany) => {
 };
 
 export const update = async (id: mongoose.Schema.Types.ObjectId, company: ICompany) => {
-  const companyToUpdate = await Company.findOne({ _id: id });
+
+  await CompanyValidationSchema.validate(company);
+
+  const companyToUpdate = await Company.findOneAndUpdate(
+    {
+      _id: id
+    },
+    {
+      ...company
+    }
+  );
 
   if (!companyToUpdate) throw new Error('NOT_FOUND:COMPANY');
 
-  const updatedCompany = { ...companyToUpdate, company };
-  await CompanyValidationSchema.validate(updatedCompany);
-
-  return companyToUpdate.save();
+  return companyToUpdate;
 };
 
 export const getOne = async(id: mongoose.Schema.Types.ObjectId) => {

@@ -4,16 +4,18 @@ import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 
 import api from '../../api/api';
-import { Table } from "../../components/common";
+import { Table } from '../../components/common';
+import { withSnackbar } from '../../hoc';
+import { SnackbarContextProps } from '../../context/SnackbarContext';
 
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin: 10px;
+  margin: 20px 0;
   width: 100%;
 `;
 
-type Props = {} & RouteComponentProps<{}>;
+type Props = {} & RouteComponentProps<{}> & SnackbarContextProps;
 
 type Company = {
   _id: string,
@@ -29,7 +31,7 @@ type State = {
   isLoading: boolean,
 }
 
-export default class CompanyList extends React.Component<Props, State> {
+class CompanyList extends React.Component<Props, State> {
 
   state = {
     quantityPerPage: 10,
@@ -38,11 +40,23 @@ export default class CompanyList extends React.Component<Props, State> {
     isLoading: true,
   };
 
-  handleDelete = (item: Company) => { console.log(item) };
+  handleDelete = async (item: Company) => {
+    const { showSnackbar } = this.props;
+    const { data } = this.state;
+    try {
+      const { status, message } = await api(`/company/${item._id}`, 'delete');
+      if (status === 200) {
+        showSnackbar({ message });
+        const deletedIndex = data.findIndex((row: Company) => row._id === item._id);
+        return this.setState({ data: [...data.slice(0, deletedIndex), ...data.slice(deletedIndex + 1)]})
+      }
+      return showSnackbar({ message: 'An error occurred when try to delete a company'});
+    } catch (e) {
+      return showSnackbar({ message: 'An error occurred when try to delete a company'});
+    }
+  };
 
   handleEdit = async (item: Company) => this.props.history.push(`/companies/edit/${item._id}`);
-
-  handlePageChange = (forward: true) => { };
 
   handleDetail = (item: Company) => { };
 
@@ -88,7 +102,7 @@ export default class CompanyList extends React.Component<Props, State> {
       icon: 'edit',
       onClick: this.handleEdit,
       header: {
-        label: 'Editar'
+        label: 'Edit'
       }
     }
   ];
@@ -106,7 +120,6 @@ export default class CompanyList extends React.Component<Props, State> {
         </ButtonWrapper>
         <Table
           columns={this.tableColumns}
-          handleChangePage={this.handlePageChange}
           onRowClick={this.handleDetail}
           data={data}
           handleLoading={this.handleLoading}
@@ -117,3 +130,5 @@ export default class CompanyList extends React.Component<Props, State> {
     )
   }
 }
+
+export default withSnackbar(CompanyList);

@@ -34,11 +34,13 @@ router.get('/:id', async (ctx: Context, next: Function) => {
 });
 
 router.put('/:id', async (ctx: Context, next: Function) => {
+  console.log('here', typeof ctx.request.body)
   const company = await Company.update(ctx.params.id, ctx.request.body);
   ctx.state.response = {
     type: `${RESPONSE_TYPES.UPDATED}:COMPANY`,
     payload: company
   };
+
   await next();
 });
 
